@@ -1,0 +1,13 @@
+{
+  "name": "canary-full-client-editor",
+  "version-string": "1.0.0",
+  "dependencies": [
+    "fmt",
+    "magic-enum",
+    "protobuf",
+    "qtbase",
+    "spdlog",
+    "zlib"
+  ],
+  "builtin-baseline": "c04c073ddb43aa1397a3c535eec3470011b0cd4e"
+}
