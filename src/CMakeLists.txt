@@ -1,6 +1,6 @@
 
 # *****************************************************************************
-# Project remeres
+# Project canary-full-client-editor
 # *****************************************************************************
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     project(canary-full-client-editor-debug LANGUAGES CXX)
@@ -16,6 +16,10 @@ find_package(liblzma CONFIG REQUIRED)
 find_package(magic_enum CONFIG REQUIRED)
 find_package(spdlog REQUIRED)
 
+set(CMAKE_AUTOMOC ON)  # Enable AUTOMOC to automatically process Q_OBJECT macros
+set(CMAKE_AUTOUIC ON)  # Enable Qt Designer .ui file support
+set(CMAKE_AUTORCC ON)  # Enable Qt resource file (.qrc) support
+
 # *****************************************************************************
 # Options
 # *****************************************************************************
@@ -23,14 +27,6 @@ option(TOGGLE_BIN_FOLDER "Use build/bin folder for generate compilation files" O
 option(OPTIONS_ENABLE_OPENMP "Enable Open Multi-Processing support." ON)
 option(DEBUG_LOG "Enable Debug Log" OFF)
 option(SPEED_UP_BUILD_UNITY "Compile using build unity for speed up build" ON)
-
-# LibArchive disabled in compilation level by default, see "#define OTGZ_SUPPORT" in the "definitions.h" file
-#if(APPLE)
-#	set(CMAKE_PREFIX_PATH /usr/local/opt/libarchive)
-#endif()
-# If you need use, enable this:
-#find_package(LibArchive REQUIRED)
-#${LibArchive_INCLUDE_DIRS} ${LibArchive_LIBRARIES}
 
 # Build static libs
 if(BUILD_STATIC_LIBRARY)
@@ -55,7 +51,7 @@ else()
 endif(DEBUG_LOG)
 
 if (MSVC)
-	add_executable(${PROJECT_NAME} "" ../cmake/remeres.rc)
+	add_executable(${PROJECT_NAME} "" ../cmake/canary-full-client-editor.rc)
 
 	if(BUILD_STATIC_LIBRARY)
 		set_property(TARGET ${PROJECT_NAME} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")

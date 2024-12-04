@@ -8,10 +8,16 @@ find_package(Threads)
 
 include_directories(${PROTOBUF_INCLUDE_DIRS})
 
+# Explicitly define shared.proto
+set(SharedProto ${PROTO_FILES_DIR}/shared.proto)
+
+# Automatically find other .proto files (excluding shared.proto)
 file(GLOB ProtoFiles
 	"${CMAKE_CURRENT_SOURCE_DIR}/**/*.proto"
 	"${CMAKE_CURRENT_SOURCE_DIR}/*.proto"
 )
+
+list(REMOVE_ITEM ProtoFiles ${SharedProto})
 
 if (MSVC AND BUILD_STATIC_LIBRARY)
 	add_library(${PROJECT_NAME} STATIC ${ProtoFiles})

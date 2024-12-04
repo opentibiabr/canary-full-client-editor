@@ -5,9 +5,18 @@
     "fmt",
     "magic-enum",
     "protobuf",
-    "qtbase",
     "spdlog",
-    "zlib"
+    "zlib",
+    "liblzma",
+    {
+      "name": "qtbase",
+      "default-features": false,
+      "features": [
+        "gui",
+        "network",
+        "widgets"
+      ]
+    }
   ],
-  "builtin-baseline": "c04c073ddb43aa1397a3c535eec3470011b0cd4e"
+  "builtin-baseline": "3edabbe1407e2d4d8ce5b78bab8abf42cc966d10"
 }
